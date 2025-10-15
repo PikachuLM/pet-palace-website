@@ -3,397 +3,871 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Palace & Aquarium - Your Trusted Pet Care Partner Since 2004</title>
+    <title>Pet Palace & Aquarium - Trivandrum's Trusted Pet Care Experts Since 2004</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        :root {
+            --primary: #00ADB5;
+            --primary-dark: #00ADB5;
+            --secondary: #00ADB5;
+            --accent: #00ADB5;
+            --dark: #00ADB5;
+            --gray-900: #2D3748;
+            --gray-700: #4A5568;
+            --gray-500: #718096;
+            --gray-100: #F7FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
         }
-
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
         nav {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
         }
-
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: -0.02em;
         }
-
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .hero {
-            margin-top: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1.2s;
-        }
-
-        .cta-button {
-            background: white;
-            color: #667eea;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1.4s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #667eea;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .about-section {
-            background: #f8f9fa;
-            padding: 4rem 2rem;
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
             align-items: center;
         }
-
-        .about-text h2 {
-            color: #667eea;
-            font-size: 2.5rem;
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .hero {
+            margin-top: 73px;
+            background: linear-gradient(135deg, #71C9CE 0%, #71C9CE 100%);
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+        }
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
             margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
         }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 400;
         }
-
-        .stats {
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+        .trust-indicators {
             display: flex;
             gap: 2rem;
-            margin-top: 2rem;
+            align-items: center;
         }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #666;
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
             font-size: 0.9rem;
+            font-weight: 500;
         }
-
-        .contact-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
+        .trust-item strong {
+            font-weight: 700;
+        }
+        .hero-card-wrapper {
+            perspective: 1000px;
+        }
+        .hero-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .rating-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .rating-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .rating-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .rating-stars {
+            font-size: 1.5rem;
+            color: var(--accent);
+            letter-spacing: 0.1rem;
+        }
+        .rating-text {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .stats-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .stat-mini {
             text-align: center;
         }
-
-        .contact-info {
-            max-width: 800px;
-            margin: 2rem auto;
+        .stat-mini-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        .stat-mini-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        .services {
+            padding: 6rem 2rem;
+            background: var(--gray-100);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-tag {
+            display: inline-block;
+            background: rgba(13, 124, 102, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
-
-        .contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
-
-        .contact-item h3 {
-            margin-bottom: 0.5rem;
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
         }
-
-        footer {
-            background: #2d3748;
-            color: white;
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(13, 124, 102, 0.2);
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        .service-card p {
+            color: var(--gray-700);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .value-props {
+            padding: 6rem 2rem;
+            background: white;
+        }
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .value-card {
             text-align: center;
             padding: 2rem;
+            border-radius: 16px;
+            background: var(--gray-100);
+            transition: all 0.3s;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .value-card:hover {
+            background: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .about-content {
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 25px rgba(13, 124, 102, 0.25);
+        }
+        .value-card h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        .value-card p {
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .social-proof {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        .social-proof h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .social-proof p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 3rem;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .testimonial {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .testimonial-stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--gray-100);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(13, 124, 102, 0.25);
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .contact-card p {
+            color: var(--gray-700);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+        .contact-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.3rem;
+            display: inline-block;
+            margin-top: 0.8rem;
+            transition: color 0.3s;
+        }
+        .contact-link:hover {
+            color: var(--primary-dark);
+        }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background: #20BA5A;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+        .cta-final {
+            padding: 5rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        .cta-final h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        .cta-final p {
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            margin-bottom: 2.5rem;
+        }
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 3rem 2rem 2rem;
+        }
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        .footer-nav {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .footer-nav a:hover {
+            color: white;
+        }
+        @media (max-width: 1024px) {
+            .hero-container {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
-
-            .stats {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero-cta {
+                justify-content: center;
+            }
+            .trust-indicators {
+                justify-content: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .hero-cta {
                 flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .services-grid,
+            .value-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <div class="logo">
-                🐾 Pet Palace & Aquarium
-            </div>
+            <div class="logo">🐾 Pet Palace & Aquarium</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="home" class="hero">
-        <h1>Welcome to Pet Palace & Aquarium</h1>
-        <p>Your Trusted Pet Care Partner in Trivandrum Since 2004</p>
-        <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get in Touch</button>
-    </section>
-
-    <section id="services" class="container">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🐕</div>
-                <h3>Pet Supplies</h3>
-                <p>Premium quality food, toys, and accessories for your beloved pets. We stock everything your furry friends need.</p>
+        <div class="hero-container">
+            <div>
+                <div class="hero-badges">
+                    <div class="badge">
+                        <span>✓</span> Established 2004
+                    </div>
+                    <div class="badge">
+                        <span>★</span> 4.5 Rated
+                    </div>
+                    <div class="badge">
+                        <span>📍</span> Powdikonam
+                    </div>
+                </div>
+                <h1>Trivandrum's Most Trusted Pet Care Partner</h1>
+                <p class="hero-subtitle">Premium pet supplies, expert aquarium solutions, and professional care services. Serving families with excellence for over two decades.</p>
+                <div class="hero-cta">
+                    <a href="tel:07947187979" class="btn btn-primary">
+                        <span>📞</span> Call Now
+                    </a>
+                    <button class="btn btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                        View Services
+                    </button>
+                </div>
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span>✓</span> <strong>21+</strong> Years Experience
+                    </div>
+                    <div class="trust-item">
+                        <span>✓</span> <strong>1000+</strong> Happy Customers
+                    </div>
+                </div>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🐠</div>
-                <h3>Aquarium Solutions</h3>
-                <p>Complete aquarium setups, maintenance, and a wide variety of beautiful fish species and accessories.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💊</div>
-                <h3>Pet Healthcare</h3>
-                <p>Essential medicines, vitamins, and healthcare products to keep your pets healthy and happy.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">✂️</div>
-                <h3>Grooming Services</h3>
-                <p>Professional grooming services to keep your pets looking and feeling their absolute best.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🦜</div>
-                <h3>Birds & Small Pets</h3>
-                <p>Cages, food, and care products for birds, rabbits, hamsters, and other small companions.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💡</div>
-                <h3>Expert Advice</h3>
-                <p>Get professional guidance on pet care, nutrition, and behavior from our experienced team.</p>
+            <div class="hero-card-wrapper">
+                <div class="hero-card">
+                    <div class="rating-section">
+                        <div class="rating-main">
+                            <div class="rating-score">4.5</div>
+                            <div>
+                                <div class="rating-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="rating-text">Based on 84+ Google Reviews</p>
+                    </div>
+                    <div class="stats-mini">
+                        <div class="stat-mini">
+                            <div class="stat-mini-value">21+</div>
+                            <div class="stat-mini-label">Years</div>
+                        </div>
+                        <div class="stat-mini">
+                            <div class="stat-mini-value">1000+</div>
+                            <div class="stat-mini-label">Customers</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <div class="about-text">
-                <h2>About Pet Palace</h2>
-                <p>Since 2004, Pet Palace & Aquarium has been Trivandrum's premier destination for all your pet care needs. Located in Powdikonam, we've built our reputation on quality products, expert advice, and genuine care for animals.</p>
-                <p>Our team is passionate about pets and dedicated to providing the best possible care and products. Whether you're a first-time pet owner or an experienced enthusiast, we're here to support you every step of the way.</p>
-                <p>With over two decades of experience, we understand what pets need to thrive. Visit us and discover why pet owners across Trivandrum trust Pet Palace for all their pet care needs.</p>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">Years of Service</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">4.5⭐</div>
-                        <div class="stat-label">Customer Rating</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Happy Customers</div>
-                    </div>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Complete Pet Care Solutions</h2>
+                <p class="section-description">Everything your beloved pets need for a healthy, joyful life</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🐕</div>
+                    <h3>Premium Pet Supplies</h3>
+                    <p>Top-quality food, treats, toys, and accessories for dogs, cats, and all companion animals from trusted brands.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🐠</div>
+                    <h3>Aquarium Excellence</h3>
+                    <p>Complete aquarium setup, maintenance, exotic fish species, live plants, and professional consultation services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Pet Healthcare Products</h3>
+                    <p>Essential medicines, vitamins, supplements, and wellness products to keep your pets in optimal health.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Professional Grooming</h3>
+                    <p>Expert grooming services by experienced professionals to keep your pets looking and feeling their absolute best.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦜</div>
+                    <h3>Birds & Small Animals</h3>
+                    <p>Specialized products, habitats, cages, and nutrition for birds, rabbits, hamsters, and other small pets.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Expert Consultation</h3>
+                    <p>Professional guidance on nutrition, behavior, training, and general care from our experienced team.</p>
                 </div>
             </div>
-            <div class="about-image">
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 400px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 8rem;">
-                    🐾
+        </div>
+    </section>
+
+    <section id="why-us" class="value-props">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Choose Us</span>
+                <h2 class="section-title">Built on Trust & Excellence</h2>
+                <p class="section-description">What makes Pet Palace the preferred choice for pet owners</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">🏆</div>
+                    <h4>21 Years of Expertise</h4>
+                    <p>Two decades of dedicated service and deep understanding of pet care needs</p>
                 </div>
+                <div class="value-card">
+                    <div class="value-icon">✓</div>
+                    <h4>Quality Assured</h4>
+                    <p>Only premium products from trusted brands that meet the highest standards</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💚</div>
+                    <h4>Passionate Team</h4>
+                    <p>Experienced animal lovers genuinely committed to your pet's wellbeing</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h4>Expert Knowledge</h4>
+                    <p>Professional advice and guidance on all aspects of pet care and health</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <h2>Trusted by Pet Owners Across Trivandrum</h2>
+        <p>Join thousands of satisfied customers who trust Pet Palace</p>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Best pet shop in Trivandrum! Quality products and knowledgeable staff who genuinely care about animals."</p>
+                <p class="testimonial-author">— Happy Customer</p>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Been coming here for years. Their aquarium expertise is unmatched. Highly recommended!"</p>
+                <p class="testimonial-author">— Satisfied Pet Parent</p>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Excellent service and competitive prices. They always have what I need for my pets."</p>
+                <p class="testimonial-author">— Regular Customer</p>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Visit Us Today</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">We're here to help you and your pets!</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <h3>📍 Location</h3>
-                <p>Powdikonam, Thiruvananthapuram<br>Near Bank of India</p>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Visit Us Today</h2>
+                <p class="section-description">Experience professional pet care service that makes a difference</p>
             </div>
-            <div class="contact-item">
-                <h3>⏰ Hours</h3>
-                <p>Monday - Saturday<br>9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
-            </div>
-            <div class="contact-item">
-                <h3>📞 Contact</h3>
-                <p>Call us for inquiries<br>or visit our store directly</p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Our Location</h3>
+                    <p>Njandoorkonam Junction<br>Powdikonam<br>Thiruvananthapuram - 695588</p>
+                    <p style="margin-top:0.5rem;"><strong>Near Bank of India</strong></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">⏰</div>
+                    <h3>Business Hours</h3>
+                    <p><strong>Monday - Saturday</strong><br>9:00 AM - 8:00 PM</p>
+                    <p style="margin-top:1rem;"><strong>Sunday</strong><br>10:00 AM - 6:00 PM</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Contact Us</h3>
+                    <p>Call for inquiries or<br>expert consultation</p>
+                    <a href="tel:07947187979" class="contact-link">099 4750 5781</a>
+                    <a href="https://wa.me/917947187979" class="whatsapp-btn" target="_blank">
+                        💬 WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
+    <section class="cta-final">
+        <h2>Ready to Provide the Best for Your Pets?</h2>
+        <p>Visit us today or call for professional guidance</p>
+        <a href="tel:07947187979" class="btn btn-primary" style="font-size:1.1rem;padding:1.2rem 2.5rem;">
+            <span>📞</span> Contact Us Now
+        </a>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Pet Palace & Aquarium. Serving Trivandrum since 2004.</p>
-        <p>Made with ❤️ for pets and their owners</p>
+        <div class="footer-content">
+            <div class="footer-logo">Pet Palace & Aquarium</div>
+            <p>Your trusted pet care partner since 2004</p>
+            <p style="margin-top:0.5rem;">Powdikonam, Thiruvananthapuram | 099 4750 5781</p>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#why-us">Why Us</a>
+                <a href="tel:07947187979">Call</a>
+                <a href="https://wa.me/917947187979" target="_blank">WhatsApp</a>
+            </div>
+            <p style="margin-top:2rem;font-size:0.85rem;opacity:0.6;">© 2025 Pet Palace & Aquarium. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        const h = document.getElementById('header');
+        let l = 0;
+        
+        window.addEventListener('scroll', () => {
+            const c = window.pageYOffset;
+            c > 50 ? h.classList.add('scrolled') : h.classList.remove('scrolled');
+            if (c <= 0) {
+                h.style.transform = 'translateY(0)';
+            } else if (c > l && c > 100) {
+                h.style.transform = 'translateY(-100%)';
+            } else {
+                h.style.transform = 'translateY(0)';
+            }
+            l = c;
         });
 
-        const cards = document.querySelectorAll('.service-card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                t && t.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-        }, { threshold: 0.1 });
-
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s, transform 0.6s';
-            observer.observe(card);
         });
     </script>
 </body>
